@@ -38,6 +38,7 @@ const LabelInput = ({ groupData }) => {
 				type={groupData.input.type}
 				id={groupData.input.id}
 				value={inputVal}
+				name={groupData.input.id}
 			/>
 			<Label
 				htmlFor={groupData.input.id}

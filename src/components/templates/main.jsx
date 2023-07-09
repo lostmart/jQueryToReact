@@ -75,7 +75,7 @@ const Main = () => {
 					<LabelInput groupData={birthDateData} />
 					<LabelInput groupData={startDateData} />
 
-					<button className='btn'>Save</button>
+					<button className="btn">Save</button>
 				</Form>
 			</main>
 		</>

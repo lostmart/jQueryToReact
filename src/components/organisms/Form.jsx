@@ -1,24 +1,20 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createUser } from '../../features/formSlice'
 
 const Form = ({ children, onSubmit }) => {
+	const dispatch = useDispatch()
+
 	const [formData, setFormData] = useState([])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		//console.log(e.target.firstName.value)
-		// console.log(children)
-		// console.log(e.target['firstName'].value)
-		children.forEach((element) => {
-			if (element.props.groupData) {
-				const id = element.props.groupData.input.id
-				setFormData((prev) => {
-					return [...prev, e.target[id].value]
-				})
-				// console.log(element.props.groupData.input.id, e.target[id].value)
-			}
-		})
-		onSubmit()
-		console.log(formData);
+		const data = new FormData(e.target)
+		const readyData = Object.fromEntries(data.entries())
+
+		//onSubmit()
+		//console.log(formData)
+		dispatch(createUser(readyData))
 	}
 
 	return <form onSubmit={handleSubmit}>{children} </form>

@@ -1,14 +1,12 @@
 import ReactDOM from 'react-dom/client'
 import React from 'react'
-import {
-	BrowserRouter,
-	Routes,
-	Route,
-	Outlet,
-} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
 import './assets/css/index.css'
 import reportWebVitals from './reportWebVitals'
+
+import { Provider } from 'react-redux'
+import store from './app/store'
 
 /* Pages  */
 import NotFound from './pages/NotFound'
@@ -23,15 +21,17 @@ const Layout = () => {
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route index element={<Home />} />
-					<Route path="/empleyees" element={<Empleyees />} />
-					<Route path="*" element={<NotFound />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+		<Provider store={store}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route index element={<Home />} />
+						<Route path="/empleyees" element={<Empleyees />} />
+						<Route path="*" element={<NotFound />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</Provider>
 	</React.StrictMode>
 )
 

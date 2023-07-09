@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({ type, id, value, onChange, onClick, onBlur }) => {
+const Input = ({ type, id, value, onChange, onClick, onBlur, name }) => {
 	return (
 		<input
 			onChange={onChange}
@@ -9,6 +9,7 @@ const Input = ({ type, id, value, onChange, onClick, onBlur }) => {
 			type={type}
 			id={id}
 			value={value}
+			name={name}
 			autoComplete="off"
 		/>
 	)
