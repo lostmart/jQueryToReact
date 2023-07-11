@@ -120,21 +120,41 @@ const Main = () => {
 					<LabelInput groupData={lastNameData} />
 					<LabelInput groupData={birthDateData} />
 					<LabelInput groupData={startDateData} />
-					<div className="form-control">
-						<label for="country">Country:</label>
-						<select name="country" id="country">
-							<RenderStates />
-						</select>
-					</div>
 
 					<fieldset className="address">
 						<legend>Address</legend>
 						<LabelInput groupData={streetData} />
 						<LabelInput groupData={cityData} />
+
+						<div className="form-control">
+							<label htmlFor="country" className="active">
+								Country:
+							</label>
+							<select className="select-cont" name="country" id="country">
+								<RenderStates />
+							</select>
+						</div>
+
 						<LabelInput groupData={zipData} />
 					</fieldset>
 
-					<button className="btn">Save</button>
+					<div className="form-control">
+						<label htmlFor="country" className="active">
+							Country:
+						</label>
+
+						<select className="select-cont" name="department" id="department">
+							<option>Sales</option>
+							<option>Marketing</option>
+							<option>Engineering</option>
+							<option>Human Resources</option>
+							<option>Legal</option>
+						</select>
+					</div>
+
+					<button type="submit" className="btn">
+						Save
+					</button>
 				</Form>
 			</main>
 		</>
