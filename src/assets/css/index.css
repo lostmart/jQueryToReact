@@ -88,30 +88,18 @@ input[type='number']:focus + label,
 input[type='search']:focus + label {
 	color: var(--prim-clr);
 }
-.form-control .active {
+/* .form-control .active {
 	-webkit-transform: translateY(-14px) scale(0.8);
 	transform: translateY(-14px) scale(0.8);
 	-webkit-transform-origin: 0 0;
 	transform-origin: 0 0;
-}
+} */
 
 .form-control > label {
 	color: #565261;
-	position: absolute;
-	top: 0;
-	left: 0;
 	font-size: 1rem;
 	cursor: text;
-	-webkit-transition: color 0.2s ease-out, -webkit-transform 0.2s ease-out;
-	transition: color 0.2s ease-out, -webkit-transform 0.2s ease-out;
-	transition: transform 0.2s ease-out, color 0.2s ease-out;
-	transition: transform 0.2s ease-out, color 0.2s ease-out,
-		-webkit-transform 0.2s ease-out;
-	-webkit-transform-origin: 0% 100%;
-	transform-origin: 0% 100%;
 	text-align: initial;
-	-webkit-transform: translateY(12px);
-	transform: translateY(12px);
 	min-width: 260px;
 }
 

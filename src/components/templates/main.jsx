@@ -89,7 +89,7 @@ const Main = () => {
 			isActive: false,
 		},
 		input: {
-			type: 'text',
+			type: 'number',
 			id: 'zipData',
 		},
 	}
@@ -127,10 +127,10 @@ const Main = () => {
 						<LabelInput groupData={cityData} />
 
 						<div className="form-control">
-							<label htmlFor="country" className="active">
-								Country:
+							<label htmlFor="state" className="active">
+								State:
 							</label>
-							<select className="select-cont" name="country" id="country">
+							<select className="select-cont" name="state" id="state">
 								<RenderStates />
 							</select>
 						</div>
@@ -139,8 +139,8 @@ const Main = () => {
 					</fieldset>
 
 					<div className="form-control">
-						<label htmlFor="country" className="active">
-							Country:
+						<label htmlFor="department" className="active">
+							Department:
 						</label>
 
 						<select className="select-cont" name="department" id="department">

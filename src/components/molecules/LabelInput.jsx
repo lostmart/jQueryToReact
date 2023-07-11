@@ -4,7 +4,6 @@ import Input from '../atoms/Input'
 import Label from '../atoms/Label'
 
 const LabelInput = ({ groupData }) => {
-
 	const [isActive, setActive] = useState(false)
 
 	// onMount
@@ -31,6 +30,12 @@ const LabelInput = ({ groupData }) => {
 
 	return (
 		<div className="form-control">
+			<Label
+				htmlFor={groupData.input.id}
+				text={groupData.label.text}
+				isActive={isActive}
+				onclick={handleActiveChange}
+			/>
 			<Input
 				onChange={handleChange}
 				onClick={handleChange}
@@ -39,12 +44,6 @@ const LabelInput = ({ groupData }) => {
 				id={groupData.input.id}
 				value={inputVal}
 				name={groupData.input.id}
-			/>
-			<Label
-				htmlFor={groupData.input.id}
-				text={groupData.label.text}
-				isActive={isActive}
-				onclick={handleActiveChange}
 			/>
 		</div>
 	)
