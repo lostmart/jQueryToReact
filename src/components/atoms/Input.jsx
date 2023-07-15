@@ -1,17 +1,26 @@
 import React from 'react'
 
-const Input = ({ type, id, value, onChange, onClick, onBlur, name }) => {
+const Input = (props) => {
+	const { type, id, value, onChange, onClick, onBlur, name, error } = props
+
+	const handleChange = (e) => {
+		onChange(e)
+	}
+
 	return (
-		<input
-			onChange={onChange}
-			onClick={onClick}
-			onBlur={onBlur}
-			type={type}
-			id={id}
-			value={value}
-			name={name}
-			autoComplete="off"
-		/>
+		<>
+			<input
+				onChange={handleChange}
+				onClick={onClick}
+				onBlur={onBlur}
+				type={type}
+				id={id}
+				value={value}
+				name={name}
+				autoComplete="off"
+			/>
+			{error && <span className="error">{error}</span>}
+		</>
 	)
 }
 

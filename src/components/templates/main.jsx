@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import React from 'react'
+import React, { useState } from 'react'
 import TitleContainer from '../molecules/TitleContainer'
 import Header from '../organisms/Header'
 import Form from '../organisms/Form'
@@ -10,8 +10,15 @@ import Title from '../atoms/Title'
 import LabelInput from '../molecules/LabelInput'
 
 import { states } from '../../data/states'
+import Modal from 'modal-package-martin-test/dist/Modal'
 
 const Main = () => {
+	const [showModal, setModal] = useState(true)
+
+	const handleClick = () => {
+		setModal(() => !showModal)
+	}
+
 	const handleSubmit = (e) => {
 		console.log('heard submit ...')
 	}
@@ -105,12 +112,27 @@ const Main = () => {
 		})
 	}
 
+	/*  render modal content  */
+	const RenderModalContent = () => {
+		return (
+			<>
+				<div className="modal-header">
+					<h5 className="modal-title">Modal title</h5>
+				</div>
+				<div className="modal-body">
+					<p>Modal body text goes here.</p>
+				</div>
+			</>
+		)
+	}
+
 	return (
 		<>
 			<Header>
 				<TitleContainer />
 			</Header>
 			<main className="container">
+				<button onClick={handleClick}>Show Modal</button>
 				<Link to="/empleyees" className="btn">
 					View Current Emplyees
 				</Link>
@@ -156,6 +178,9 @@ const Main = () => {
 						Save
 					</button>
 				</Form>
+				<Modal showModal={showModal} onClick={handleClick}>
+					<RenderModalContent />
+				</Modal>
 			</main>
 		</>
 	)

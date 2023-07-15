@@ -1,23 +1,24 @@
-import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createUser } from '../../features/formSlice'
 
-const Form = ({ children, onSubmit }) => {
+const Form = ({ children }) => {
 	const dispatch = useDispatch()
-
-	const [formData, setFormData] = useState([])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const data = new FormData(e.target)
 		const readyData = Object.fromEntries(data.entries())
 
-		//onSubmit()
-		//console.log(formData)
+		for (const [key, value] of Object.entries(readyData)) {
+			if (value === '') {
+				alert(key + ' cant be empty !')
+				return
+			}
+		}
 		dispatch(createUser(readyData))
 	}
 
-	return <form onSubmit={handleSubmit}>{children} </form>
+	return <form onSubmit={handleSubmit}>{children}</form>
 }
 
 export default Form

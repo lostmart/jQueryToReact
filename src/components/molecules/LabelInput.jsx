@@ -6,6 +6,8 @@ import Label from '../atoms/Label'
 const LabelInput = ({ groupData }) => {
 	const [isActive, setActive] = useState(false)
 
+	const [hasError, setError] = useState('')
+
 	// onMount
 	useEffect(() => {
 		groupData.label.isActive && setActive(true)
@@ -23,8 +25,17 @@ const LabelInput = ({ groupData }) => {
 	const handleChange = (e) => {
 		const value = e.target.value
 		setInputVal(() => value)
+
 		if (value <= 0) {
 			handleActiveChange()
+		}
+	}
+
+	const handleBlur = () => {
+		if (inputVal === '') {
+			setError(() => "This can't be empty !")
+		} else {
+			setError(false)
 		}
 	}
 
@@ -39,10 +50,11 @@ const LabelInput = ({ groupData }) => {
 			<Input
 				onChange={handleChange}
 				onClick={handleChange}
-				onBlur={handleChange}
+				onBlur={handleBlur}
 				type={groupData.input.type}
 				id={groupData.input.id}
 				value={inputVal}
+				error={hasError}
 				name={groupData.input.id}
 			/>
 		</div>
