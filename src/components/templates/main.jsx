@@ -12,22 +12,81 @@ import LabelInput from '../molecules/LabelInput'
 import { states } from '../../data/states'
 import Modal from 'modal-package-martin-test/dist/Modal'
 
+import dateFormatter from '../../utils/dateFormatter'
+
 const Main = () => {
-	const [showModal, setModal] = useState(true)
+	const [showModal, setModal] = useState(false)
+
+	const [modalContent, setModalContent] = useState({
+		title: '',
+		content: '',
+		hasError: false,
+	})
+
+	const [formSubmitted, setFormSubmit] = useState(false)
 
 	const handleClick = () => {
 		setModal(() => !showModal)
+		setFormSubmit(false)
 	}
 
-	const handleSubmit = (e) => {
-		console.log('heard submit ...')
+	const showEmployeeData = (msg) => {
+		return (
+			<ul>
+				<li>
+					<strong>First Name:</strong> {msg.firstName}
+				</li>
+				<li>
+					<strong>Last Name:</strong> {msg.lastName}
+				</li>
+				<li>
+					<strong>Date of Birth:</strong> {dateFormatter(msg.dateBirth)}
+				</li>
+				<li>
+					<strong>Start Date:</strong> {dateFormatter(msg.startDate)}
+				</li>
+				<li>
+					<strong>Department:</strong> {msg.department}
+				</li>
+				<li style={{ display: 'flex', gap: '0.4em' }}>
+					<strong>Address:</strong>
+					<span>
+						{msg.street}, {msg.cityData} <br />
+						{msg.zipData}, {msg.state}
+					</span>
+				</li>
+			</ul>
+		)
+	}
+
+	const handleSubmit = (msg) => {
+		if (msg === 'error') {
+			setModal(() => !showModal)
+			setModalContent(() => {
+				return {
+					title: 'Error',
+					content: 'All fields must be completed',
+					hasError: true,
+				}
+			})
+		} else {
+			setModal(() => !showModal)
+			setModalContent(() => {
+				return {
+					title: 'Employee Created!',
+					content: showEmployeeData(msg),
+					hasError: false,
+				}
+			})
+			setFormSubmit(true)
+			console.log(msg)
+		}
 	}
 
 	/*  form parts   */
 	const firstNameData = {
 		label: {
 			text: 'First Name',
-			isActive: false,
 		},
 		input: {
 			type: 'text',
@@ -38,7 +97,6 @@ const Main = () => {
 	const lastNameData = {
 		label: {
 			text: 'Last Name',
-			isActive: false,
 		},
 		input: {
 			type: 'text',
@@ -49,7 +107,6 @@ const Main = () => {
 	const birthDateData = {
 		label: {
 			text: 'Date of Birth',
-			isActive: true,
 		},
 		input: {
 			type: 'date',
@@ -60,7 +117,6 @@ const Main = () => {
 	const startDateData = {
 		label: {
 			text: 'Start Date',
-			isActive: true,
 		},
 		input: {
 			type: 'date',
@@ -71,7 +127,6 @@ const Main = () => {
 	const streetData = {
 		label: {
 			text: 'Street',
-			isActive: false,
 		},
 		input: {
 			type: 'text',
@@ -82,7 +137,6 @@ const Main = () => {
 	const cityData = {
 		label: {
 			text: 'City',
-			isActive: false,
 		},
 		input: {
 			type: 'text',
@@ -93,7 +147,6 @@ const Main = () => {
 	const zipData = {
 		label: {
 			text: 'Zip Code',
-			isActive: false,
 		},
 		input: {
 			type: 'number',
@@ -105,7 +158,7 @@ const Main = () => {
 	const RenderStates = () => {
 		return states.map((state) => {
 			return (
-				<option key={state.abbreviation} value={state.name}>
+				<option key={state.abbreviation} value={state.abbreviation}>
 					{state.name}
 				</option>
 			)
@@ -117,11 +170,14 @@ const Main = () => {
 		return (
 			<>
 				<div className="modal-header">
-					<h5 className="modal-title">Modal title</h5>
+					<h5
+						className={
+							modalContent.hasError ? 'modal-title error' : 'modal-title'
+						}>
+						{modalContent.title}
+					</h5>
 				</div>
-				<div className="modal-body">
-					<p>Modal body text goes here.</p>
-				</div>
+				<div className="modal-body">{modalContent.content}</div>
 			</>
 		)
 	}
@@ -132,21 +188,20 @@ const Main = () => {
 				<TitleContainer />
 			</Header>
 			<main className="container">
-				<button onClick={handleClick}>Show Modal</button>
 				<Link to="/empleyees" className="btn">
 					View Current Emplyees
 				</Link>
 				<Title text="Create Employee" element="h2" />
 				<Form onSubmit={handleSubmit}>
-					<LabelInput groupData={firstNameData} />
-					<LabelInput groupData={lastNameData} />
-					<LabelInput groupData={birthDateData} />
-					<LabelInput groupData={startDateData} />
+					<LabelInput groupData={firstNameData} submitted={formSubmitted} />
+					<LabelInput groupData={lastNameData} submitted={formSubmitted} />
+					<LabelInput groupData={birthDateData} submitted={formSubmitted} />
+					<LabelInput groupData={startDateData} submitted={formSubmitted} />
 
 					<fieldset className="address">
 						<legend>Address</legend>
-						<LabelInput groupData={streetData} />
-						<LabelInput groupData={cityData} />
+						<LabelInput groupData={streetData} submitted={formSubmitted} />
+						<LabelInput groupData={cityData} submitted={formSubmitted} />
 
 						<div className="form-control">
 							<label htmlFor="state" className="active">
@@ -157,7 +212,7 @@ const Main = () => {
 							</select>
 						</div>
 
-						<LabelInput groupData={zipData} />
+						<LabelInput groupData={zipData} submitted={formSubmitted} />
 					</fieldset>
 
 					<div className="form-control">

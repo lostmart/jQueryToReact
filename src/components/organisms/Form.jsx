@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { createUser } from '../../features/formSlice'
 
-const Form = ({ children }) => {
+const Form = ({ children, onSubmit }) => {
 	const dispatch = useDispatch()
 
 	const handleSubmit = (e) => {
@@ -11,11 +11,12 @@ const Form = ({ children }) => {
 
 		for (const [key, value] of Object.entries(readyData)) {
 			if (value === '') {
-				alert(key + ' cant be empty !')
+				onSubmit('error')
 				return
 			}
 		}
 		dispatch(createUser(readyData))
+		onSubmit(readyData)
 	}
 
 	return <form onSubmit={handleSubmit}>{children}</form>

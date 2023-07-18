@@ -17,6 +17,15 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+ul,
+li {
+	list-style-type: none;
+}
+
+li {
+	line-height: 2;
+}
+
 .title {
 	display: flex;
 	align-items: center;
@@ -158,4 +167,20 @@ input[type='search']:focus + label {
 
 .error {
 	color: red;
+}
+
+th {
+	transition: all 250ms ease-in-out;
+	color: #0f1b0f;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+th:hover {
+	color: var(--prim-clr);
+}
+
+tr {
+	display: flex;
 }

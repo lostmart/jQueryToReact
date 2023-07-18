@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Input from '../atoms/Input'
 import Label from '../atoms/Label'
 
-const LabelInput = ({ groupData }) => {
-	const [isActive, setActive] = useState(false)
-
+const LabelInput = ({ groupData, submitted }) => {
 	const [hasError, setError] = useState('')
-
-	// onMount
-	useEffect(() => {
-		groupData.label.isActive && setActive(true)
-	}, [])
 
 	const [inputVal, setInputVal] = useState('')
 
-	const handleActiveChange = () => {
-		if (inputVal === '' && !groupData.label.isActive) {
-			setActive(() => !isActive)
-			return
-		}
-	}
+	// Every rerender
+	useEffect(() => {
+		submitted && setInputVal('')
+	})
 
 	const handleChange = (e) => {
 		const value = e.target.value
 		setInputVal(() => value)
-
-		if (value <= 0) {
-			handleActiveChange()
-		}
 	}
 
 	const handleBlur = () => {
@@ -41,12 +28,7 @@ const LabelInput = ({ groupData }) => {
 
 	return (
 		<div className="form-control">
-			<Label
-				htmlFor={groupData.input.id}
-				text={groupData.label.text}
-				isActive={isActive}
-				onclick={handleActiveChange}
-			/>
+			<Label htmlFor={groupData.input.id} text={groupData.label.text} />
 			<Input
 				onChange={handleChange}
 				onClick={handleChange}

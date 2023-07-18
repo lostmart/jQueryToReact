@@ -18,6 +18,7 @@ const Input = (props) => {
 				value={value}
 				name={name}
 				autoComplete="off"
+				required
 			/>
 			{error && <span className="error">{error}</span>}
 		</>
