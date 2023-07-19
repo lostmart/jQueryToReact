@@ -12,8 +12,11 @@ const Empleyees = () => {
 	return (
 		<div className="container">
 			<h1>Current Employees</h1>
-			<CheckUsersRender />
-
+			<div className="table-container">
+				<div className="table-viewer">
+					<CheckUsersRender />
+				</div>
+			</div>
 			<Link to="/" className="btn">
 				Home
 			</Link>

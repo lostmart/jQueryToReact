@@ -1,24 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { userMockData } from '../data/usersMockData'
 
-// const initialState = {
-// 	city: '',
-// 	department: '',
-// 	firstName: '',
-// 	lastName: '',
-// 	dateBirth: '',
-// 	startDate: '',
-// 	state: '',
-// 	street: '',
-// 	zipCode: '',
-// }
+/* mockdata   */
+const initialState = userMockData
 
-const initialState = []
+//const initialState = []
 
 export const formSlice = createSlice({
 	name: 'formData',
 	initialState,
 	reducers: {
-		createUser: (state, action) => [...state, action.payload]
+		createUser: (state, action) => [...state, action.payload],
 	},
 })
 
