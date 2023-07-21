@@ -181,8 +181,8 @@ input[type='search']:focus + label {
 	background: rgba(173, 160, 238, 0.052);
 	background: linear-gradient(
 		56deg,
-		rgba(173, 160, 238, 0.052) 0%,
-		rgba(153, 183, 235, 0.267) 100%
+		rgba(207, 203, 226, 0.052) 0%,
+		rgba(176, 190, 213, 0.267) 100%
 	);
 }
 
@@ -234,6 +234,7 @@ tr {
 	outline: 0;
 	justify-content: space-between;
 	border-bottom: 1px solid #69686857;
+	transition: all 320ms;
 }
 tr:nth-child(even) {
 	background: #d2d2d249;
@@ -252,4 +253,13 @@ td {
 
 th:hover {
 	color: var(--prim-clr);
+}
+
+tr:hover:not(.table-headers) {
+	background-color: var(--font-clr);
+	color: white;
+}
+
+.active-data {
+	background-color: #0e250e37;
 }
