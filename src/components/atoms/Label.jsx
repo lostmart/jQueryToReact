@@ -1,9 +1,6 @@
-const Label = ({ htmlFor, text, isActive,  }) => {
-
+const Label = ({ htmlFor, text, isActive, className }) => {
 	return (
-		<label
-			htmlFor={htmlFor}
-			className={isActive ? 'active' : ''}>
+		<label htmlFor={htmlFor} className={isActive ? 'active' : className}>
 			{text}
 		</label>
 	)

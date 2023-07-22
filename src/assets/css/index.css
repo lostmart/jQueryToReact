@@ -263,3 +263,22 @@ tr:hover:not(.table-headers) {
 .active-data {
 	background-color: #36229a24;
 }
+
+.search-container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.search-control {
+	display: flex;
+	align-items: center;
+}
+
+.search-label {
+	height: 2em;
+	margin-right: 0.5em;
+}
+.search-control input[type='text'] {
+	height: 2em;
+}

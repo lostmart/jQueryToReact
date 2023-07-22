@@ -1,11 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TableHeaders from '../molecules/TableHeaders'
 import TableBody from '../molecules/TableBody'
 import sortedData from '../../utils/dataSorter'
 
-const Table = ({ users }) => {
+const Table = ({ users, inputValue }) => {
+	useEffect(() => {
+		handleSearchInput()
+	}, [inputValue])
+
 	const [sortKey, setSortKey] = useState('firstName')
 	const [reversed, setReversed] = useState({ val: 'firstName', active: false })
+	const [filteredSortedData, setFilteredSortedData] = useState(null)
 
 	const handleHeaderClick = (payload) => {
 		setSortKey(payload.val)
@@ -13,6 +18,10 @@ const Table = ({ users }) => {
 			...reversed,
 			active: payload.active,
 		})
+	}
+
+	const handleSearchInput = () => {
+		console.log(inputValue, sortedData(users, sortKey, reversed.active))
 	}
 
 	const headers = [
