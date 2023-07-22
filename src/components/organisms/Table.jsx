@@ -5,9 +5,14 @@ import sortedData from '../../utils/dataSorter'
 
 const Table = ({ users }) => {
 	const [sortKey, setSortKey] = useState('firstName')
+	const [reversed, setReversed] = useState({ val: 'firstName', active: false })
 
-	const handleHeaderClick = (val) => {
-		setSortKey(val)
+	const handleHeaderClick = (payload) => {
+		setSortKey(payload.val)
+		setReversed({
+			...reversed,
+			active: payload.active,
+		})
 	}
 
 	const headers = [
@@ -55,8 +60,13 @@ const Table = ({ users }) => {
 				headers={headers}
 				onClick={handleHeaderClick}
 				sortKey={sortKey}
+				reversed={reversed}
 			/>
-			<TableBody data={sortedData(users, sortKey)} sortKey={sortKey} />
+			<TableBody
+				data={sortedData(users, sortKey, reversed.active)}
+				sortKey={sortKey}
+				reversed={reversed}
+			/>
 		</table>
 	)
 }

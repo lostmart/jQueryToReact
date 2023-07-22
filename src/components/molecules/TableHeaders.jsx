@@ -1,11 +1,24 @@
 import React from 'react'
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'
 
-const TableHeaders = ({ headers, onClick, sortKey }) => {
+const TableHeaders = ({ headers, onClick, sortKey, reversed }) => {
 	const RenderHeaders = () => {
 		const handleClick = (val) => {
-			onClick(val)
+			if (val === sortKey) {
+				onClick({ val, active: !reversed.active })
+			} else {
+				onClick({ val, active: false })
+			}
 		}
+
+		const RenderSorted = ({ header }) => {
+			if (sortKey === header.key && !reversed.active)
+				return <FaSortDown style={{ transform: 'translateY(-2px)' }} />
+			if (sortKey === header.key && reversed.active)
+				return <FaSortUp style={{ transform: 'translateY(3px)' }} />
+			if (sortKey) return <FaSort style={{ transform: 'translateY(1px)' }} />
+		}
+
 		return headers.map((header) => {
 			return (
 				<th
@@ -14,7 +27,7 @@ const TableHeaders = ({ headers, onClick, sortKey }) => {
 					className={sortKey === header.key ? 'active-data' : null}>
 					{header.label}
 
-					<FaSort style={{ transform: 'translateY(1px)' }} />
+					<RenderSorted header={header} />
 				</th>
 			)
 		})
