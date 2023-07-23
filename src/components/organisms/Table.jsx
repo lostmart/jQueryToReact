@@ -10,7 +10,7 @@ const Table = ({ users, inputValue }) => {
 
 	const [sortKey, setSortKey] = useState('firstName')
 	const [reversed, setReversed] = useState({ val: 'firstName', active: false })
-	const [filteredSortedData, setFilteredSortedData] = useState(null)
+	const [filteredSortedData, setFilteredSortedData] = useState([])
 
 	const handleHeaderClick = (payload) => {
 		setSortKey(payload.val)
@@ -21,7 +21,10 @@ const Table = ({ users, inputValue }) => {
 	}
 
 	const handleSearchInput = () => {
-		console.log(inputValue, sortedData(users, sortKey, reversed.active))
+		const filteredUsers = users.filter((user) =>
+			user.firstName.toLowerCase().includes(inputValue)
+		)
+		setFilteredSortedData(() => filteredUsers)
 	}
 
 	const headers = [
@@ -72,7 +75,7 @@ const Table = ({ users, inputValue }) => {
 				reversed={reversed}
 			/>
 			<TableBody
-				data={sortedData(users, sortKey, reversed.active)}
+				data={sortedData(filteredSortedData, sortKey, reversed.active)}
 				sortKey={sortKey}
 				reversed={reversed}
 			/>
