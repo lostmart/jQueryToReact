@@ -1,10 +1,8 @@
 import Label from '../atoms/Label'
 import Input from '../atoms/Input'
-import { useState } from 'react'
 
 const SearchInput = ({ groupData, onChange, inputValue }) => {
 	const handleChange = (e) => {
-		// setInput(() => e.target.value)
 		onChange(e.target.value)
 	}
 	return (

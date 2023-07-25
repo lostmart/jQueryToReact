@@ -9,7 +9,9 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 
 	const handleSearchInput = () => {
 		const filteredUsers = pagData.filter((user) =>
-			keys.some((key) => user[key].toLowerCase().includes(inputValue))
+			keys.some((key) =>
+				user[key].toLowerCase().includes(inputValue.toLowerCase())
+			)
 		)
 		setFilteredSortedData(() => {
 			return filteredUsers
@@ -113,8 +115,7 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 				{entriesPerPage < users.length
 					? entriesPerPage * currentPage
 					: users.length + 1}
-				of
-				{users.length + 1} entries
+				{` of ${users.length + 1} entries`}
 			</div>
 			<Pagination
 				totalUsers={users.length}
