@@ -19,7 +19,7 @@ const TableBody = ({ data, sortKey }) => {
 					<td className={sortKey === 'department' ? 'active-data' : null}>
 						{user.department}
 					</td>
-					<td className={sortKey === 'birthDate' ? 'active-data' : null}>
+					<td className={sortKey === 'dateBirth' ? 'active-data' : null}>
 						{dateFormatter(user.dateBirth)}
 					</td>
 					<td className={sortKey === 'street' ? 'active-data' : null}>
