@@ -3,6 +3,10 @@
 This repository contains a project based on a site made using jQuery and recreated using React 18.2.0.
 It alse features a personalized NPM pack for a modal called `modal-package-martin-test` you can find its NPM package here: [https://www.npmjs.com/package/modal-package-martin-test](https://www.npmjs.com/package/modal-package-martin-test)
 
+## Deployed version
+
+[here](https://main--zesty-moonbeam-928dd0.netlify.app/)
+
 ## Getting Started
 
 To get started with the migration process, follow these steps:
