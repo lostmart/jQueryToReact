@@ -7,6 +7,15 @@ import Pagination from './Pagination'
 const Table = ({ users, inputValue, entriesPerPage }) => {
 	const [currentPage, setCurrentPage] = useState(1)
 
+	const handleSearchInput = () => {
+		const filteredUsers = pagData.filter((user) =>
+			keys.some((key) => user[key].toLowerCase().includes(inputValue))
+		)
+		setFilteredSortedData(() => {
+			return filteredUsers
+		})
+	}
+
 	const lastUserIndex = currentPage * entriesPerPage
 	const firstUserIndex = lastUserIndex - entriesPerPage
 
@@ -84,15 +93,6 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 		})
 	}
 
-	const handleSearchInput = () => {
-		const filteredUsers = pagData.filter((user) =>
-			keys.some((key) => user[key].toLowerCase().includes(inputValue))
-		)
-		setFilteredSortedData(() => {
-			return filteredUsers
-		})
-	}
-
 	return (
 		<>
 			<table>
@@ -110,7 +110,10 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 			</table>
 			<div>
 				Showing {firstUserIndex + 1} to{' '}
-				{entriesPerPage < users.length ? entriesPerPage : users.length + 1} of{' '}
+				{entriesPerPage < users.length
+					? entriesPerPage * currentPage
+					: users.length + 1}
+				of
 				{users.length + 1} entries
 			</div>
 			<Pagination

@@ -72,7 +72,6 @@ input[type='search'] {
 	font-size: 16px;
 	margin: 0 0 8px 0;
 	padding: 0;
-	max-width: 6em;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	-webkit-box-sizing: content-box;
@@ -271,6 +270,10 @@ tr:hover:not(.table-headers) {
 	width: 100%;
 }
 
+.search-container input {
+	max-width: 6em;
+}
+
 .search-control {
 	display: flex;
 	align-items: center;
@@ -330,6 +333,7 @@ tr:hover:not(.table-headers) {
 	width: 100%;
 	align-items: center;
 	padding: 0 0.9em;
+	max-width: 1080px;
 }
 
 .entries-legend {
@@ -341,4 +345,5 @@ tr:hover:not(.table-headers) {
 .entries-legend select {
 	height: 2em;
 	margin: 0 0.4em;
+	min-width: 47px;
 }

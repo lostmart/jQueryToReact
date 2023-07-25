@@ -8,7 +8,7 @@ const Pagination = ({
 }) => {
 	let pages = []
 
-	for (let i = 1; i < Math.ceil(totalUsers / usersPerPage); i++) {
+	for (let i = 1; i < Math.ceil(totalUsers / usersPerPage) +1; i++) {
 		pages.push(i)
 	}
 	console.log(currentPage)

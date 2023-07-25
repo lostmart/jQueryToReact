@@ -46,6 +46,7 @@ const Empleyees = () => {
 					Show
 					<select onChange={(event) => setEntriesPerPage(event.target.value)}>
 						<option value="15">15</option>
+						<option value="25">25</option>
 						<option value="50">50</option>
 						<option value="100">100</option>
 					</select>
