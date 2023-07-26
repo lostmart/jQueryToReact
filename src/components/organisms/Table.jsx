@@ -7,8 +7,9 @@ import Pagination from './Pagination'
 const Table = ({ users, inputValue, entriesPerPage }) => {
 	const [currentPage, setCurrentPage] = useState(1)
 
+	/* searchInput  */
 	const handleSearchInput = () => {
-		const filteredUsers = pagData.filter((user) =>
+		const filteredUsers = users.filter((user) =>
 			keys.some((key) =>
 				user[key].toLowerCase().includes(inputValue.toLowerCase())
 			)
@@ -28,6 +29,8 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 	const [sortKey, setSortKey] = useState('firstName')
 	const [reversed, setReversed] = useState({ val: 'firstName', active: false })
 	const [filteredSortedData, setFilteredSortedData] = useState([])
+
+	console.log(filteredSortedData)
 
 	const headers = [
 		{
@@ -86,12 +89,12 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 	]
 
 	/* paginated data  */
-	const pagData = users.slice(firstUserIndex, lastUserIndex)
+	const pagData = filteredSortedData.slice(firstUserIndex, lastUserIndex)
 
 	const handlePageChange = (page) => {
 		setCurrentPage(() => page)
 		setFilteredSortedData(() => {
-			return users.slice(firstUserIndex, lastUserIndex)
+			return filteredSortedData.slice(firstUserIndex, lastUserIndex)
 		})
 	}
 
@@ -105,17 +108,17 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 					reversed={reversed}
 				/>
 				<TableBody
-					data={sortedData(filteredSortedData, sortKey, reversed.active)}
+					data={sortedData(pagData, sortKey, reversed.active)}
 					sortKey={sortKey}
 					reversed={reversed}
 				/>
 			</table>
 			<div>
 				Showing {firstUserIndex + 1} to{' '}
-				{entriesPerPage < users.length
+				{entriesPerPage < pagData.length
 					? entriesPerPage * currentPage
-					: users.length + 1}
-				{` of ${users.length + 1} entries`}
+					: pagData.length + 1}
+				{` of ${pagData.length + 1} entries`}
 			</div>
 			<Pagination
 				totalUsers={users.length}
