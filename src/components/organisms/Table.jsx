@@ -3,6 +3,7 @@ import TableHeaders from '../molecules/TableHeaders'
 import TableBody from '../molecules/TableBody'
 import sortedData from '../../utils/dataSorter'
 import Pagination from './Pagination'
+import PaginationLegend from '../molecules/PaginationLegend'
 
 const Table = ({ users, inputValue, entriesPerPage }) => {
 	const [currentPage, setCurrentPage] = useState(1)
@@ -29,8 +30,6 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 	const [sortKey, setSortKey] = useState('firstName')
 	const [reversed, setReversed] = useState({ val: 'firstName', active: false })
 	const [filteredSortedData, setFilteredSortedData] = useState([])
-
-	console.log(filteredSortedData)
 
 	const headers = [
 		{
@@ -113,15 +112,24 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 					reversed={reversed}
 				/>
 			</table>
-			<div>
+			<PaginationLegend
+				paginationData={{
+					firstUserIndex,
+					entriesPerPage,
+					currentPage,
+					pagData,
+					totalUsers: users,
+				}}
+			/>
+			{/* <div>
 				Showing {firstUserIndex + 1} to{' '}
 				{entriesPerPage < pagData.length
 					? entriesPerPage * currentPage
 					: pagData.length + 1}
 				{` of ${pagData.length + 1} entries`}
-			</div>
+			</div> */}
 			<Pagination
-				totalUsers={users.length}
+				totalUsers={filteredSortedData.length}
 				usersPerPage={entriesPerPage}
 				setCurrentPage={handlePageChange}
 				currentPage={currentPage}
