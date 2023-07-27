@@ -121,13 +121,6 @@ const Table = ({ users, inputValue, entriesPerPage }) => {
 					totalUsers: users,
 				}}
 			/>
-			{/* <div>
-				Showing {firstUserIndex + 1} to{' '}
-				{entriesPerPage < pagData.length
-					? entriesPerPage * currentPage
-					: pagData.length + 1}
-				{` of ${pagData.length + 1} entries`}
-			</div> */}
 			<Pagination
 				totalUsers={filteredSortedData.length}
 				usersPerPage={entriesPerPage}
