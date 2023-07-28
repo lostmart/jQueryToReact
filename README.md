@@ -29,7 +29,8 @@ This project uses the principles of Atomic Design as an experimental tendency ev
         ├── data                    # Data for the 50 States and 43 random users mock data
         ├── features                # Redux slices
         ├── pages                   # App pages handled with react-router
-        ├── utils                   # formatting helper functions (dataSorter and dataFormatter )
+        ├── utils                   # Formatting helper functions (dataSorter and dataFormatter )
+    ├── rapport                     # Performance rapport jQuery vs React
     └── README.md
 
 ## Deployed version
