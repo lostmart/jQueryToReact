@@ -11,6 +11,8 @@ To get started with the migration process, follow these steps:
 
 - Clone the repository: git clone https://github.com/lostmart/jQueryToReact.git
 - Navigate to the repository: cd jQueryToReact
+- run `npm i` to tinstall all dependencies
+- VS code is the recommended IDE for this project
 
 ## Project Setup and Dependencies:
 
